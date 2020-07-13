@@ -300,6 +300,12 @@ LIBINPUT_1.11 {
 
 LIBINPUT_1.14 {
 	libinput_tablet_tool_has_size;
+	libinput_device_config_scroll_speed_get_default_horiz;
+	libinput_device_config_scroll_speed_get_default_vert;
+	libinput_device_config_scroll_speed_get_horiz;
+	libinput_device_config_scroll_speed_get_vert;
+	libinput_device_config_scroll_speed_set_horiz;
+	libinput_device_config_scroll_speed_set_vert;
 	libinput_event_tablet_tool_get_size_major;
 	libinput_event_tablet_tool_get_size_minor;
 	libinput_event_tablet_tool_size_major_has_changed;
