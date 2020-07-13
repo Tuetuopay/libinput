@@ -701,8 +701,9 @@ LIBINPUT_EXPORT double
 libinput_event_pointer_get_axis_value(struct libinput_event_pointer *event,
 				      enum libinput_pointer_axis axis)
 {
-	struct libinput *libinput = event->base.device->seat->libinput;
-	double value = 0;
+	struct libinput_device *device = event->base.device;
+	struct libinput *libinput = device->seat->libinput;
+	double value = 0, speed = 0;
 
 	require_event_type(libinput_event_get_context(&event->base),
 			   event->base.type,
@@ -714,10 +715,12 @@ libinput_event_pointer_get_axis_value(struct libinput_event_pointer *event,
 	} else {
 		switch (axis) {
 		case LIBINPUT_POINTER_AXIS_SCROLL_HORIZONTAL:
-			value = event->delta.x;
+			speed = device->config.scroll_speed->get_horiz(device);
+			value = event->delta.x * speed;
 			break;
 		case LIBINPUT_POINTER_AXIS_SCROLL_VERTICAL:
-			value = event->delta.y;
+			speed = device->config.scroll_speed->get_vert(device);
+			value = event->delta.y * speed;
 			break;
 		}
 	}
@@ -729,8 +732,9 @@ LIBINPUT_EXPORT double
 libinput_event_pointer_get_axis_value_discrete(struct libinput_event_pointer *event,
 					       enum libinput_pointer_axis axis)
 {
-	struct libinput *libinput = event->base.device->seat->libinput;
-	double value = 0;
+	struct libinput_device *device = event->base.device;
+	struct libinput *libinput = device->seat->libinput;
+	double value = 0, speed = 0;
 
 	require_event_type(libinput_event_get_context(&event->base),
 			   event->base.type,
@@ -742,10 +746,12 @@ libinput_event_pointer_get_axis_value_discrete(struct libinput_event_pointer *ev
 	} else {
 		switch (axis) {
 		case LIBINPUT_POINTER_AXIS_SCROLL_HORIZONTAL:
-			value = event->discrete.x;
+			speed = device->config.scroll_speed->get_horiz(device);
+			value = event->discrete.x * speed;
 			break;
 		case LIBINPUT_POINTER_AXIS_SCROLL_VERTICAL:
-			value = event->discrete.y;
+			speed = device->config.scroll_speed->get_vert(device);
+			value = event->discrete.y * speed;
 			break;
 		}
 	}
