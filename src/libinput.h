@@ -5927,6 +5927,126 @@ libinput_device_config_rotation_get_angle(struct libinput_device *device);
 unsigned int
 libinput_device_config_rotation_get_default_angle(struct libinput_device *device);
 
+/**
+ * @ingroup config
+ *
+ * Set the horizontal scroll speed multiplier of a device.
+ *
+ * The speed has to be strictly greater than 0, use the natural scrolling
+ * setting to invert the scroll direction.
+ *
+ * @param device The device to configure
+ * @param speed The speed as a ratio
+ * @return A config status code.
+ *
+ * @see libinput_device_config_scroll_speed_set_vert
+ * @see libinput_device_config_scroll_speed_get_horiz
+ * @see libinput_device_config_scroll_speed_get_default_horiz
+ * @see libinput_device_config_scroll_speed_get_vert
+ * @see libinput_device_config_scroll_speed_get_default_vert
+ *
+ * @since 1.14
+ */
+enum libinput_config_status
+libinput_device_config_scroll_speed_set_horiz(struct libinput_device *device,
+					      float speed);
+
+/**
+ * @ingroup config
+ *
+ * Set the vertical scroll speed multiplier of a device.
+ *
+ * The speed has to be strictly greater than 0, use the natural scrolling
+ * setting to invert the scroll direction.
+ *
+ * @param device The device to configure
+ * @param speed The speed as a ratio
+ * @return A config status code.
+ *
+ * @see libinput_device_config_scroll_speed_set_horiz
+ * @see libinput_device_config_scroll_speed_get_horiz
+ * @see libinput_device_config_scroll_speed_get_default_horiz
+ * @see libinput_device_config_scroll_speed_get_vert
+ * @see libinput_device_config_scroll_speed_get_default_vert
+ *
+ * @since 1.14
+ */
+enum libinput_config_status
+libinput_device_config_scroll_speed_set_vert(struct libinput_device *device,
+					     float speed);
+
+/**
+ * @ingroup config
+ *
+ * Get the current horizontal scroll speed multiplier of a device.
+ *
+ * @param device The device to configure
+ * @return The speed multiplier
+ *
+ * @see libinput_device_config_scroll_speed_set_horiz
+ * @see libinput_device_config_scroll_speed_set_vert
+ * @see libinput_device_config_scroll_speed_get_default_horiz
+ * @see libinput_device_config_scroll_speed_get_vert
+ * @see libinput_device_config_scroll_speed_get_default_vert
+ *
+ * @since 1.14
+ */
+float libinput_device_config_scroll_speed_get_horiz(struct libinput_device *device);
+
+/**
+ * @ingroup config
+ *
+ * Get the default horizontal scroll speed multiplier of a device.
+ *
+ * @param device The device to configure
+ * @return The default speed multiplier
+ *
+ * @see libinput_device_config_scroll_speed_set_horiz
+ * @see libinput_device_config_scroll_speed_set_vert
+ * @see libinput_device_config_scroll_speed_get_horiz
+ * @see libinput_device_config_scroll_speed_get_vert
+ * @see libinput_device_config_scroll_speed_get_default_vert
+ *
+ * @since 1.14
+ */
+float libinput_device_config_scroll_speed_get_default_horiz(struct libinput_device *device);
+
+/**
+ * @ingroup config
+ *
+ * Get the current vertical scroll speed multiplier of a device.
+ *
+ * @param device The device to configure
+ * @return The speed multiplier
+ *
+ * @see libinput_device_config_scroll_speed_set_horiz
+ * @see libinput_device_config_scroll_speed_set_vert
+ * @see libinput_device_config_scroll_speed_get_horiz
+ * @see libinput_device_config_scroll_speed_get_default_horiz
+ * @see libinput_device_config_scroll_speed_get_default_vert
+ *
+ * @since 1.14
+ */
+float libinput_device_config_scroll_speed_get_vert(struct libinput_device *device);
+
+/**
+ * @ingroup config
+ *
+ * Get the default vertical scroll speed multiplier of a device.
+ *
+ * @param device The device to configure
+ * @return The default speed multiplier
+ *
+ * @see libinput_device_config_scroll_speed_set_horiz
+ * @see libinput_device_config_scroll_speed_set_vert
+ * @see libinput_device_config_scroll_speed_get_horiz
+ * @see libinput_device_config_scroll_speed_get_default_horiz
+ * @see libinput_device_config_scroll_speed_get_vert
+ *
+ * @since 1.14
+ */
+float libinput_device_config_scroll_speed_get_default_vert(struct libinput_device *device);
+
 #ifdef __cplusplus
 }
 #endif

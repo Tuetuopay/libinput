@@ -4353,6 +4353,63 @@ libinput_device_config_rotation_get_default_angle(struct libinput_device *device
 	return device->config.rotation->get_default_angle(device);
 }
 
+LIBINPUT_EXPORT enum libinput_config_status
+libinput_device_config_scroll_speed_set_horiz(struct libinput_device *device,
+					      float speed)
+{
+	if (speed <= 0.0)
+		return LIBINPUT_CONFIG_STATUS_INVALID;
+
+	return device->config.scroll_speed->set_horiz(device, speed);
+}
+
+LIBINPUT_EXPORT enum libinput_config_status
+libinput_device_config_scroll_speed_set_vert(struct libinput_device *device,
+					     float speed)
+{
+	if (speed <= 0.0)
+		return LIBINPUT_CONFIG_STATUS_INVALID;
+
+	return device->config.scroll_speed->set_vert(device, speed);
+}
+
+LIBINPUT_EXPORT float
+libinput_device_config_scroll_speed_get_horiz(struct libinput_device *device)
+{
+	if (!device->config.scroll_speed)
+		return 1.0;
+
+	return device->config.scroll_speed->get_horiz(device);
+}
+
+LIBINPUT_EXPORT float
+libinput_device_config_scroll_speed_get_vert(struct libinput_device *device)
+{
+	if (!device->config.scroll_speed)
+		return 1.0;
+
+	return device->config.scroll_speed->get_vert(device);
+}
+
+LIBINPUT_EXPORT float
+libinput_device_config_scroll_speed_get_default_horiz(struct libinput_device *device)
+{
+	if (!device->config.scroll_speed)
+		return 1.0;
+
+	return device->config.scroll_speed->get_default_horiz(device);
+}
+
+LIBINPUT_EXPORT float
+libinput_device_config_scroll_speed_get_default_vert(struct libinput_device *device)
+{
+	if (!device->config.scroll_speed)
+		return 1.0;
+
+	return device->config.scroll_speed->get_default_vert(device);
+}
+
+
 #if HAVE_LIBWACOM
 WacomDeviceDatabase *
 libinput_libwacom_ref(struct libinput *li)
