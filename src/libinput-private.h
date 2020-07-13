@@ -307,6 +307,20 @@ struct libinput_device_config_rotation {
 	unsigned int (*get_default_angle)(struct libinput_device *device);
 };
 
+struct libinput_device_config_scroll_speed {
+	int (*is_available)(struct libinput_device *device);
+	enum libinput_config_status (*set_horiz)(
+			struct libinput_device *device,
+			float speed);
+	enum libinput_config_status (*set_vert)(
+			struct libinput_device *device,
+			float speed);
+	float (*get_horiz)(struct libinput_device *device);
+	float (*get_vert)(struct libinput_device *device);
+	float (*get_default_horiz)(struct libinput_device *device);
+	float (*get_default_vert)(struct libinput_device *device);
+};
+
 struct libinput_device_config {
 	struct libinput_device_config_tap *tap;
 	struct libinput_device_config_calibration *calibration;
@@ -319,6 +333,7 @@ struct libinput_device_config {
 	struct libinput_device_config_middle_emulation *middle_emulation;
 	struct libinput_device_config_dwt *dwt;
 	struct libinput_device_config_rotation *rotation;
+	struct libinput_device_config_scroll_speed *scroll_speed;
 };
 
 struct libinput_device_group {
