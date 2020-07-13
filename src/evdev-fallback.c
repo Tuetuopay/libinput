@@ -1724,6 +1724,8 @@ fallback_dispatch_create(struct libinput_device *libinput_device)
 	if (device->scroll.natural_scrolling_enabled)
 		evdev_init_natural_scroll(device);
 
+	evdev_init_scroll_speed(device);
+
 	evdev_init_calibration(device, &dispatch->calibration);
 	evdev_init_sendevents(device, &dispatch->base);
 	fallback_init_rotation(dispatch, device);

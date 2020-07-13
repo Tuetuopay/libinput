@@ -3120,6 +3120,7 @@ tp_init_scroll(struct tp_dispatch *tp, struct evdev_device *device)
 	tp_edge_scroll_init(tp, device);
 
 	evdev_init_natural_scroll(device);
+	evdev_init_scroll_speed(device);
 
 	tp->scroll.config_method.get_methods = tp_scroll_config_scroll_method_get_methods;
 	tp->scroll.config_method.set_method = tp_scroll_config_scroll_method_set_method;

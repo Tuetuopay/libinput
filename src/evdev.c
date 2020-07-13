@@ -885,6 +885,68 @@ evdev_init_natural_scroll(struct evdev_device *device)
 	device->base.config.natural_scroll = &device->scroll.config_natural;
 }
 
+static int
+evdev_scroll_config_speed_is_available(struct libinput_device *device) {
+	return 1;
+}
+
+static enum libinput_config_status
+evdev_scroll_config_speed_set_horiz(struct libinput_device *device, float speed) {
+	struct evdev_device *dev = evdev_device(device);
+
+	dev->scroll.horiz_speed = speed;
+
+	return LIBINPUT_CONFIG_STATUS_SUCCESS;
+}
+
+static enum libinput_config_status
+evdev_scroll_config_speed_set_vert(struct libinput_device *device, float speed) {
+	struct evdev_device *dev = evdev_device(device);
+
+	dev->scroll.vert_speed = speed;
+
+	return LIBINPUT_CONFIG_STATUS_SUCCESS;
+}
+
+static float
+evdev_scroll_config_speed_get_horiz(struct libinput_device *device) {
+	struct evdev_device *dev = evdev_device(device);
+
+	return dev->scroll.horiz_speed;
+}
+
+static float
+evdev_scroll_config_speed_get_vert(struct libinput_device *device) {
+	struct evdev_device *dev = evdev_device(device);
+
+	return dev->scroll.vert_speed;
+}
+
+static float
+evdev_scroll_config_speed_get_default_horiz(struct libinput_device *device) {
+	return 1.0;
+}
+
+static float
+evdev_scroll_config_speed_get_default_vert(struct libinput_device *device) {
+	return 1.0;
+}
+
+void
+evdev_init_scroll_speed(struct evdev_device *device)
+{
+	device->scroll.config_speed.is_available = evdev_scroll_config_speed_is_available;
+	device->scroll.config_speed.set_horiz = evdev_scroll_config_speed_set_horiz;
+	device->scroll.config_speed.set_vert = evdev_scroll_config_speed_set_vert;
+	device->scroll.config_speed.get_horiz = evdev_scroll_config_speed_get_horiz;
+	device->scroll.config_speed.get_vert = evdev_scroll_config_speed_get_vert;
+	device->scroll.config_speed.get_default_horiz = evdev_scroll_config_speed_get_default_horiz;
+	device->scroll.config_speed.get_default_vert = evdev_scroll_config_speed_get_default_vert;
+	device->scroll.horiz_speed = evdev_scroll_config_speed_get_default_horiz(&device->base);
+	device->scroll.vert_speed = evdev_scroll_config_speed_get_default_vert(&device->base);
+	device->base.config.scroll_speed = &device->scroll.config_speed;
+}
+
 int
 evdev_need_mtdev(struct evdev_device *device)
 {

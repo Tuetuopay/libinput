@@ -236,6 +236,9 @@ struct evdev_device {
 		enum evdev_button_scroll_lock_state lock_state;
 		bool want_lock_enabled;
 		bool lock_enabled;
+
+		struct libinput_device_config_scroll_speed config_speed;
+		float horiz_speed, vert_speed;
 	} scroll;
 
 	struct {
@@ -568,6 +571,9 @@ evdev_pointer_notify_physical_button(struct evdev_device *device,
 
 void
 evdev_init_natural_scroll(struct evdev_device *device);
+
+void
+evdev_init_scroll_speed(struct evdev_device *device);
 
 void
 evdev_init_button_scroll(struct evdev_device *device,

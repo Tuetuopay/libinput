@@ -2406,6 +2406,7 @@ tablet_init(struct tablet_dispatch *tablet,
 
 	evdev_init_sendevents(device, &tablet->base);
 	tablet_init_left_handed(device);
+	evdev_init_scroll_speed(device);
 
 	for (axis = LIBINPUT_TABLET_TOOL_AXIS_X;
 	     axis <= LIBINPUT_TABLET_TOOL_AXIS_MAX;
